@@ -1,0 +1,33 @@
+<div class="container-sm">
+  <form [formGroup] = "loginForm" (ngSubmit)="authenticate()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <small class="bg-danger text-light mt-1 px-2 py-1 rounded" *ngIf="fm.email.errors && loginSubmitted">
+        <ng-container [ngSwitch]="fm.email.value">  
+          <ng-container *ngSwitchCase="''" >
+            El email es requerido
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            El email es invalido
+          </ng-container>
+        </ng-container>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" />
+      <small class="bg-danger text-light mt-1 px-2 py-1 rounded" *ngIf="fm.password.errors && loginSubmitted">
+        <ng-container [ngSwitch]="fm.password.value">  
+          <ng-container *ngSwitchCase="''" >
+            El password es requerido
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            El password debe tener minimo 6 caracteres
+          </ng-container>
+        </ng-container>
+      </small>
+    </div>
+    <button type="submit" class="btn btn-primary my-3">Submit</button>
+  </form>
+</div>
